@@ -11,7 +11,7 @@ Status values: `todo`, `in progress`, `review`, `done`. Update the Owner and Sta
 | 3 | `vulnpilot/detect_password_spray.py` | AYESHA-81 | medium | 2 h | one IP trying many different usernames | `check_detect_password_spray.py` | done |
 | 4 | `vulnpilot/detect_invalid_users.py` | TAYYABA-68 | easy | 1 h | attempts with usernames that do not exist | `check_detect_invalid_users.py` | done |
 | 5 | `vulnpilot/ioc.py` | TODO | easy | 1-2 h | extract attacker IPs and usernames from the findings | `check_ioc.py` | todo |
-| 6 | `vulnpilot/mitre.py` | TODO | easy | 1 h | map findings to MITRE ATT&CK using the JSON file | `check_mitre.py` | todo |
+| 6 | `vulnpilot/mitre.py` | Hifza-Arshad2008 | easy | 1 h | map findings to MITRE ATT&CK using the JSON file | `check_mitre.py` | done |
 | 7 | `vulnpilot/timeline.py` | TODO | easy | 1-2 h | sort suspicious events into timeline entries | `check_timeline.py` | todo |
 | 8 | `vulnpilot/risk.py` | TODO | medium | 2 h | explainable risk score: level, score, reasons | `check_risk.py` | todo |
 | 9 | `vulnpilot/report.py` | TODO | easy | 1-2 h | build the markdown incident report | `check_report.py` | todo |
