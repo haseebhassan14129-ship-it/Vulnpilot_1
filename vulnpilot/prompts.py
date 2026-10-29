@@ -11,7 +11,7 @@ WHAT GOES IN
 
 WHAT MUST COME OUT
     A pair (system_prompt, user_prompt) of two non-empty strings.
- 
+    system_prompt: the AI's rules. It MUST say: use ONLY the evidence lines given and never invent
     anything; put facts a log line proves under CONFIRMED and quote the exact line; put guesses
     under HYPOTHESES; recommend actions; answer with one JSON object in the format ANSWER_FORMAT below.
     user_prompt: the data: the risk level and reasons, then every finding with its title, severity,

@@ -46,8 +46,6 @@ def score_risk(findings):
 
     ### WRITE YOUR CODE BELOW THIS LINE ###
     # Replace the placeholder by building your own `result` here, step by step.
-    ### WRITE YOUR CODE ABOVE THIS LINE ###
-
     # Start with zero risk and an empty list of explanations.
     score = 0
     reasons = []
@@ -97,6 +95,7 @@ def score_risk(findings):
             level = "low"
 
         result = RiskResult(level, score, reasons)
+    ### WRITE YOUR CODE ABOVE THIS LINE ###
 
     return result
 
