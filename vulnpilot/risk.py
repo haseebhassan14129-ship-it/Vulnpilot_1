@@ -48,6 +48,56 @@ def score_risk(findings):
     # Replace the placeholder by building your own `result` here, step by step.
     ### WRITE YOUR CODE ABOVE THIS LINE ###
 
+    # Start with zero risk and an empty list of explanations.
+    score = 0
+    reasons = []
+
+    # Give points for every suspicious finding.
+    for finding in findings:
+        if finding.finding_type == "brute_force":
+            points = 50
+            reason = "Brute force attack detected"
+        elif finding.finding_type == "password_spray":
+            points = 25
+            reason = "Password spray attack detected"
+        elif finding.finding_type == "invalid_users":
+            points = 10
+            reason = "Attempts with non-existent usernames detected"
+        else:
+            points = 5
+            reason = "Other suspicious activity detected"
+
+        # More serious findings receive additional points.
+        if finding.severity == "critical":
+            points += 20
+        elif finding.severity == "high":
+            points += 10
+        elif finding.severity == "medium":
+            points += 5
+
+        score += points
+        reasons.append(f"{reason} (+{points})")
+
+    # If nothing suspicious was found, the risk is low.
+    if not findings:
+        result = RiskResult("low", 0, ["No suspicious findings"])
+    else:
+        # Keep the score within the allowed range of 0 to 100.
+        if score > 100:
+            score = 100
+
+        # Convert the numeric score into a risk level.
+        if score >= 70:
+            level = "critical"
+        elif score >= 40:
+            level = "high"
+        elif score >= 20:
+            level = "medium"
+        else:
+            level = "low"
+
+        result = RiskResult(level, score, reasons)
+
     return result
 
 
