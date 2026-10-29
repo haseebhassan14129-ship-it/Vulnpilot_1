@@ -41,12 +41,27 @@ from vulnpilot.models import TimelineEntry
 
 def build_timeline(events, findings):
     """Return a sorted list of TimelineEntry for the suspicious events."""
-    result = dummy_timeline()  # placeholder, so the whole app works from the first minute
+    result = dummy_timeline()   # placeholder
 
-    ### WRITE YOUR CODE BELOW THIS LINE ###
-    # Replace the placeholder by building your own `result` here, step by step.
-    ### WRITE YOUR CODE ABOVE THIS LINE ###
+ ### WRITE YOUR CODE BELOW THIS LINE ###   
+    evidence = set()
+    for finding in findings:
+        evidence.update(finding.evidence_lines)
 
+    result = []
+    if evidence:
+        for event in sorted(events, key=lambda e: e.line_number):
+            if event.raw_line not in evidence:
+                continue
+            if event.result == "success":
+                severity = "critical"
+                description = f"Login succeeded for {event.user} from {event.source_ip}"
+            else:
+                severity = "warning"
+                description = f"Failed login for {event.user} from {event.source_ip}"
+            result.append(TimelineEntry(event.time, description, event.line_number, severity))
+    
+### WRITE YOUR CODE ABOVE THIS LINE ###
     return result
 
 
