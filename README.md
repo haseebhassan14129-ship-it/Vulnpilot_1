@@ -24,6 +24,13 @@ Security reports can be edited after the fact. VulnPilot fixes that:
 
 ---
 
+## NVIDIA Nemotron and Nebius
+
+- **NVIDIA Nemotron writes the incident investigation.** Default model: `nvidia/nemotron-3.5-super-vl:free`, with `nvidia/nemotron-3-ultra-550b-a55b:free` and `nvidia/nemotron-3.5-lightning:free` as backups. We picked Super because it answered in 7-16 seconds with valid, well-grounded JSON, while Ultra took 25+ seconds. The model is told to use only the evidence lines and to quote them; every "confirmed" claim is then checked against the real log lines (an unquoted or invented claim is moved to hypotheses). No fine-tuning: we use Nemotron out of the box with prompt engineering and reasoning switched off for speed.
+- **How it is served today:** through OpenRouter's free tier (OpenAI-compatible API). If that is unavailable the app falls back to Groq (gpt-oss) and Google (Gemini), and finally to a labelled offline sample. The page always shows which model answered.
+- **Nebius Token Factory:** `vulnpilot/ai_client.py` talks to any OpenAI-compatible API, and Nebius Token Factory (`https://api.tokenfactory.nebius.com/v1/`) is the FIRST service it tries when `NEBIUS_API_KEY` and `NEBIUS_MODEL` are set. We could not get Nebius access from Pakistan before the deadline, so the live demo currently runs on OpenRouter. Setting those two values switches the whole app to Nebius with no code change.
+- **Tavily:** not used.
+
 ## Run it in 4 commands
 
 You need **Git** and **Python 3.11 or newer**. Nothing else: no API keys, no wallet. Without keys the app runs in safe **demo mode** (offline sample AI text, simulated blockchain).
